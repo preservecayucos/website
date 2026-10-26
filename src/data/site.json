@@ -1,0 +1,49 @@
+{
+  "tagline": "Keeping Cayucos, Cayucos.",
+  "mission": "Preserve Cayucos is a community-based organization created to preserve the unique character of Cayucos.",
+  "about": [
+    "Cayucos is a beach town of about 2,400 people, and only around half of them live here year-round. Young families can't afford to buy homes, long-term rentals are turning into vacation rentals, and enrollment at our school keeps dropping. Meanwhile, proposals for large-scale development keep coming.",
+    "Decisions about Cayucos are made at the County Planning Commission, the Board of Supervisors, and the California Coastal Commission. Those bodies weigh evidence, and developers arrive with experts. Until now, the town hasn't had anyone doing the same on its behalf.",
+    "Preserve Cayucos was founded by residents to be that advocate. We bring fact-based information to the community and work for healthy, responsible, equitable growth, so that the people who live, work, and visit here have a real say in what Cayucos becomes."
+  ],
+  "work": [
+    {
+      "title": "Community events",
+      "text": "Quarterly gatherings and an annual event with presentations from professionals in the environmental and social sciences. Our first, a candidate forum focused on Cayucos issues, was standing room only."
+    },
+    {
+      "title": "Research you can use",
+      "text": "Plain-language reporting on short-term rentals, census trends, water quality and cost, the Urban Reserve Line, the Estero Area Plan, and the history of First Nations peoples on this land."
+    },
+    {
+      "title": "Expert advocacy",
+      "text": "When a project comes before the county or the Coastal Commission, we bring qualified experts, including geologists, soil engineers, and urban planners, so the public record is complete."
+    },
+    {
+      "title": "Helping residents be heard",
+      "text": "What's on the agenda, when public comment opens, and how to make it count. We help neighbors take part in the land use decisions that shape their town."
+    }
+  ],
+  "board": [
+    { "name": "Harley K. Dubois", "role": "Project Director" },
+    { "name": "Vicki Tamoush", "role": "Board Member" },
+    { "name": "Sharon Borradori", "role": "Board Member" },
+    { "name": "Janyce Meslin, Ph.D.", "role": "Board Member" }
+  ],
+  "donate": {
+    "url": "https://charity.pledgeit.org/preservecayucos",
+    "intro": "We are an all-volunteer group. Your gift goes to the work itself: putting qualified experts in front of decision-makers and keeping the community informed.",
+    "uses": [
+      "Independent experts in geology, soil engineering, and urban planning",
+      "Community events and educational presentations",
+      "Printed materials, banners, and outreach"
+    ],
+    "sponsor_statement": "Preserve Cayucos is a fiscally sponsored project of Ecologistics (EIN 27-2116150). Donations are made to Ecologistics for the benefit of Preserve Cayucos.",
+    "by_mail": ""
+  },
+  "contact": {
+    "email": "PreserveCayucosLLC@gmail.com",
+    "phone": "(805) 995-1910",
+    "mailing": "P.O. Box 213\nCayucos, CA 93430"
+  }
+}

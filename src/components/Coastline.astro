@@ -1,0 +1,40 @@
+---
+// Line illustration: the pier on the left, Morro Rock on the horizon, waves in front.
+// Swap for a real photo later by replacing this component in index.astro.
+---
+<svg class="coast" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax slice" role="img" aria-label="Line drawing of the Cayucos pier with Morro Rock on the horizon">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f2ec" />
+      <stop offset="1" stop-color="#ebe3d3" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="260" fill="url(#sky)" />
+  <!-- far hills -->
+  <path d="M0 150 C120 130 220 128 330 142 C420 152 470 146 560 150 L560 160 L0 160 Z" fill="#d6dcd4" />
+  <!-- Morro Rock -->
+  <path d="M860 160 C866 120 892 86 930 80 C968 76 996 104 1004 160 Z" fill="#9fb2ad" />
+  <path d="M1004 160 C1040 156 1100 154 1200 156 L1200 160 Z" fill="#b8c6c1" />
+  <!-- sea -->
+  <rect y="158" width="1200" height="102" fill="#2c5a5e" />
+  <path d="M0 158 H1200" stroke="#1b3a3d" stroke-width="2" />
+  <!-- pier deck + pilings -->
+  <g stroke="#1b3a3d" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M0 132 L640 146" stroke-width="5" />
+    <path d="M40 133 V214 M100 134 V212 M160 136 V210 M220 137 V208 M280 138 V206 M340 140 V204 M400 141 V202 M460 142 V200 M520 144 V198 M580 145 V196 M630 146 V194" />
+    <path d="M0 122 L640 138" stroke-width="2" />
+    <path d="M60 123 V133 M180 126 V136 M300 129 V139 M420 132 V141 M540 135 V144" stroke-width="2" />
+  </g>
+  <!-- waves -->
+  <g stroke="#e3ecea" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M680 190 q20 -6 40 0 t40 0 t40 0" />
+    <path d="M900 214 q20 -6 40 0 t40 0 t40 0 t40 0" />
+    <path d="M140 236 q20 -6 40 0 t40 0 t40 0" />
+    <path d="M520 244 q20 -6 40 0 t40 0" />
+    <path d="M1060 186 q20 -6 40 0 t40 0" />
+  </g>
+</svg>
+
+<style>
+  .coast { display: block; width: 100%; height: clamp(150px, 22vw, 260px); }
+</style>

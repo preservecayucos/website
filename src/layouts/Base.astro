@@ -1,0 +1,127 @@
+---
+import '@fontsource/fraunces/500.css';
+import '@fontsource/fraunces/600.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/600.css';
+import '../styles/global.css';
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.mission } = Astro.props;
+const fullTitle = title ? `${title} · Preserve Cayucos` : 'Preserve Cayucos';
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/', label: 'About' },
+  { href: '/updates/', label: 'Updates' },
+  { href: '/contact/', label: 'Contact' },
+];
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a href="/" class="brand" aria-label="Preserve Cayucos home">
+          <svg viewBox="0 0 40 24" width="40" height="24" aria-hidden="true">
+            <path d="M2 20 H38" stroke="currentColor" stroke-width="2" fill="none" />
+            <path d="M24 20 C24 10 29 5 33 5 C36 5 38 10 38 20" fill="currentColor" />
+            <path d="M3 15 H18 M6 15 V20 M10 15 V20 M14 15 V20" stroke="currentColor" stroke-width="1.6" fill="none" />
+          </svg>
+          <span>Preserve Cayucos</span>
+        </a>
+        <nav aria-label="Main">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+          ))}
+          <a href="/donate/" class="btn btn-primary nav-donate">Donate</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap foot">
+        <div>
+          <p class="foot-name">Preserve Cayucos</p>
+          <p class="foot-mission">{site.mission}</p>
+        </div>
+        <div class="foot-contact">
+          <p>
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a><br />
+            {site.contact.phone}<br />
+            <span set:html={site.contact.mailing.replace(/\n/g, '<br />')} />
+          </p>
+        </div>
+      </div>
+      <div class="wrap foot-legal">
+        <p>{site.donate.sponsor_statement}</p>
+        <p>© {year} Preserve Cayucos</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--sea-deep); color: #fff; padding: 0.6rem 1rem; z-index: 10;
+  }
+  .skip:focus { left: 1rem; }
+
+  .site-header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; padding-top: 0.9rem; padding-bottom: 0.9rem;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 0.6rem;
+    font: 600 1.25rem/1 var(--serif); color: var(--sea-deep); text-decoration: none;
+  }
+  nav { display: flex; align-items: center; gap: 0.25rem 1.4rem; flex-wrap: wrap; }
+  nav a:not(.btn) {
+    color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    padding: 0.3rem 0; border-bottom: 2px solid transparent;
+  }
+  nav a:not(.btn):hover { color: var(--sea); }
+  nav a[aria-current='page'] { border-bottom-color: var(--rust); }
+  .nav-donate { padding: 0.6em 1.1em; font-size: 0.95rem; }
+
+  .site-footer {
+    background: var(--sea-deep); color: #dfe8e6; margin-top: 0;
+    padding: 3rem 0 1.5rem; font-size: 0.95rem;
+  }
+  .site-footer a { color: #fff; }
+  .foot { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .foot { grid-template-columns: 2fr 1fr; } }
+  .foot-name { font: 600 1.35rem/1.2 var(--serif); color: #fff; margin-bottom: 0.5rem; }
+  .foot-mission { max-width: 34rem; color: #c3d2cf; }
+  .foot-legal {
+    margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.82rem; color: #a9bcb8;
+  }
+  .foot-legal p { margin-bottom: 0.4rem; }
+</style>

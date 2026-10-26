@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import Signup from '../../components/Signup.astro';
+import UpdateCard from '../../components/UpdateCard.astro';
+import { getUpdates } from '../../lib/updates';
+
+const posts = await getUpdates();
+---
+<Base title="Updates" description="News, events, and research from Preserve Cayucos.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Updates</p>
+      <h1>News from Preserve Cayucos</h1>
+      <p class="intro">Events, public comment deadlines, and what we're learning about the issues facing our town.</p>
+      {posts.length === 0 ? (
+        <p>Nothing posted yet. Check back soon.</p>
+      ) : (
+        <div class="list">
+          {posts.map((post) => <UpdateCard post={post} />)}
+        </div>
+      )}
+    </div>
+  </section>
+  <Signup />
+</Base>
+
+<style>
+  .intro { color: var(--muted); font-size: 1.15rem; max-width: 38rem; }
+  .list { display: grid; gap: 1.25rem; margin-top: 2.5rem; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+</style>

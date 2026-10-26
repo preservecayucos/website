@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import Coastline from '../components/Coastline.astro';
+import Signup from '../components/Signup.astro';
+import UpdateCard from '../components/UpdateCard.astro';
+import site from '../data/site.json';
+import { getUpdates } from '../lib/updates';
+
+const latest = (await getUpdates()).slice(0, 3);
+---
+<Base>
+  <section class="hero">
+    <div class="wrap hero-text">
+      <p class="eyebrow">Cayucos, California</p>
+      <h1>{site.tagline}</h1>
+      <p class="lede">{site.mission}</p>
+      <div class="actions">
+        <a href="/donate/" class="btn btn-primary">Support our work</a>
+        <a href="#signup-heading" class="btn btn-ghost">Join the email list</a>
+      </div>
+    </div>
+    <Coastline />
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">About us</p>
+        <h2>Cayucos needed an advocate.</h2>
+      </div>
+      <div class="about-body">
+        {site.about.map((para) => <p>{para}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2>Facts first, then action.</h2>
+      <div class="grid work">
+        {site.work.map((item) => (
+          <div class="work-item">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {latest.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <div class="head-row">
+          <div>
+            <p class="eyebrow">Latest</p>
+            <h2>Updates</h2>
+          </div>
+          <a href="/updates/">All updates →</a>
+        </div>
+        <div class="grid updates">
+          {latest.map((post) => <UpdateCard post={post} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {site.board.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Who we are</p>
+        <h2>Neighbors, with deep roots in town.</h2>
+        <ul class="board">
+          {site.board.map((m) => (
+            <li><strong>{m.name}</strong><span>{m.role}</span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <Signup />
+</Base>
+
+<style>
+  .hero { background: var(--paper); padding-top: clamp(3rem, 9vw, 6rem); }
+  .hero-text { padding-bottom: clamp(2rem, 5vw, 3rem); }
+  .hero h1 { max-width: 14ch; }
+  .lede { font-size: clamp(1.1rem, 2.2vw, 1.3rem); color: var(--muted); max-width: 36rem; margin-bottom: 1.75rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  .split { display: grid; gap: 1rem 4rem; }
+  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1.6fr; } }
+  .about-body p { font-size: 1.12rem; }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
+  .work { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2rem; }
+  .work-item { border-top: 3px solid var(--sand); padding-top: 1rem; }
+  .work-item p { color: var(--muted); margin: 0; }
+  .updates { grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); }
+
+  .head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; }
+  .head-row h2 { margin-bottom: 0; }
+  .head-row a { font-weight: 600; }
+
+  .board {
+    list-style: none; padding: 0; margin: 2rem 0 0;
+    display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+  .board li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.2rem; }
+  .board strong { display: block; font-family: var(--serif); font-size: 1.15rem; color: var(--sea-deep); }
+  .board span { color: var(--muted); font-size: 0.92rem; }
+</style>

@@ -1,0 +1,26 @@
+---
+import { formatDate } from '../lib/updates';
+interface Props { post: any }
+const { post } = Astro.props;
+const href = `/updates/${post.id}/`;
+---
+<article class="card">
+  {post.data.image && (
+    <a href={href} class="card-img" tabindex="-1" aria-hidden="true">
+      <img src={post.data.image} alt="" loading="lazy" />
+    </a>
+  )}
+  <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date)}</time>
+  <h3><a href={href}>{post.data.title}</a></h3>
+  {post.data.summary && <p>{post.data.summary}</p>}
+</article>
+
+<style>
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; }
+  .card-img img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border-radius: 4px; margin-bottom: 1rem; }
+  time { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  h3 { margin: 0.35rem 0 0.5rem; }
+  h3 a { color: var(--sea-deep); text-decoration: none; }
+  h3 a:hover { text-decoration: underline; }
+  p { color: var(--muted); margin: 0; font-size: 0.98rem; }
+</style>

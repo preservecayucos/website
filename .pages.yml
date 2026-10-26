@@ -1,0 +1,120 @@
+# Pages CMS configuration — https://pagescms.org
+# This file defines what editors see when they log in at app.pagescms.org.
+
+media:
+  input: public/media
+  output: /media
+
+content:
+  - name: updates
+    label: Updates
+    type: collection
+    path: src/content/updates
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: summary
+        label: Short summary
+        description: One or two sentences shown in the list of updates. Optional.
+        type: text
+      - name: image
+        label: Photo
+        description: Optional. Shown at the top of the post.
+        type: image
+      - name: image_alt
+        label: Photo description
+        description: Describe the photo in a few words, for people using screen readers.
+        type: string
+      - name: draft
+        label: Draft (hide from the site)
+        type: boolean
+        default: false
+      - name: body
+        label: Post
+        type: rich-text
+
+  - name: site
+    label: Site text & settings
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: tagline
+        label: Headline on home page
+        type: string
+      - name: mission
+        label: Mission statement
+        type: text
+      - name: about
+        label: About us (paragraphs)
+        type: text
+        list: true
+      - name: work
+        label: What we do
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: text
+            label: Description
+            type: text
+      - name: board
+        label: Board members
+        type: object
+        list: true
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: role
+            label: Role
+            type: string
+      - name: donate
+        label: Donate page
+        type: object
+        fields:
+          - name: url
+            label: Donation link (PledgeIt)
+            type: string
+          - name: intro
+            label: Intro text
+            type: text
+          - name: uses
+            label: What donations pay for
+            type: string
+            list: true
+          - name: sponsor_statement
+            label: Fiscal sponsor statement (use Ecologistics' approved wording)
+            type: text
+          - name: by_mail
+            label: Giving by check (leave blank to hide)
+            type: text
+      - name: contact
+        label: Contact info
+        type: object
+        fields:
+          - name: email
+            label: Email
+            type: string
+          - name: phone
+            label: Phone
+            type: string
+          - name: mailing
+            label: Mailing address
+            type: text

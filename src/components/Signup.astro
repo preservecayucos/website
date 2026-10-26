@@ -1,0 +1,49 @@
+---
+// Email list signup. Submissions are collected by Netlify Forms (form name "newsletter")
+// and can be exported as CSV, or later replaced with a MailerLite/Kit embed.
+interface Props { heading?: string; text?: string }
+const {
+  heading = 'Stay in the loop',
+  text = 'Event dates, public comment deadlines, and new research, a few times a season. No spam.',
+} = Astro.props;
+---
+<section class="signup" aria-labelledby="signup-heading">
+  <div class="wrap signup-inner">
+    <div>
+      <h2 id="signup-heading">{heading}</h2>
+      <p>{text}</p>
+    </div>
+    <form
+      name="newsletter"
+      method="POST"
+      action="/thanks/?f=newsletter"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      class="signup-form"
+    >
+      <input type="hidden" name="form-name" value="newsletter" />
+      <p class="hidden"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <div class="row">
+        <div class="field">
+          <label for="su-name">Name</label>
+          <input id="su-name" name="name" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="su-email">Email</label>
+          <input id="su-email" name="email" type="email" required autocomplete="email" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign me up</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .signup { background: var(--sea-soft); padding: clamp(2.5rem, 6vw, 4rem) 0; border-top: 1px solid var(--line); }
+  .signup-inner { display: grid; gap: 1.5rem; align-items: center; }
+  @media (min-width: 820px) { .signup-inner { grid-template-columns: 1fr 1.2fr; gap: 3rem; } }
+  .signup h2 { margin-bottom: 0.4rem; }
+  .signup p { color: var(--muted); margin: 0; }
+  .row { display: grid; gap: 0 1rem; }
+  @media (min-width: 560px) { .row { grid-template-columns: 1fr 1.4fr; } }
+</style>
