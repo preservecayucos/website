@@ -25,10 +25,22 @@
     }
   ],
   "board": [
-    { "name": "Harley K. Dubois", "role": "Project Director" },
-    { "name": "Vicki Tamoush", "role": "Board Member" },
-    { "name": "Sharon Borradori", "role": "Board Member" },
-    { "name": "Janyce Meslin, Ph.D.", "role": "Board Member" }
+    {
+      "name": "Harley K. Dubois",
+      "role": "Project Director"
+    },
+    {
+      "name": "Vicki Tamoush",
+      "role": "Board Member"
+    },
+    {
+      "name": "Sharon Borradori",
+      "role": "Board Member"
+    },
+    {
+      "name": "Janyce Meslin, Ph.D.",
+      "role": "Board Member"
+    }
   ],
   "donate": {
     "url": "https://charity.pledgeit.org/preservecayucos",
@@ -42,8 +54,8 @@
     "by_mail": ""
   },
   "contact": {
-    "email": "PreserveCayucosLLC@gmail.com",
-    "phone": "(805) 995-1910",
+    "email": "info@preservecayucos.org",
+    "phone": "",
     "mailing": "P.O. Box 213\nCayucos, CA 93430"
   }
 }

@@ -12,7 +12,7 @@ const c = site.contact;
         <p class="intro">A concern about a project, a question about a county decision, or a skill you'd like to offer. We read everything.</p>
         <dl>
           <dt>Email</dt><dd><a href={`mailto:${c.email}`}>{c.email}</a></dd>
-          <dt>Phone</dt><dd>{c.phone}</dd>
+          {c.phone && <><dt>Phone</dt><dd>{c.phone}</dd></>}
           <dt>Mail</dt><dd set:html={c.mailing.replace(/\n/g, '<br />')} />
         </dl>
       </div>

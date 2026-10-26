@@ -69,7 +69,7 @@ const year = new Date().getFullYear();
         <div class="foot-contact">
           <p>
             <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a><br />
-            {site.contact.phone}<br />
+            {site.contact.phone && <>{site.contact.phone}<br /></>}
             <span set:html={site.contact.mailing.replace(/\n/g, '<br />')} />
           </p>
         </div>
